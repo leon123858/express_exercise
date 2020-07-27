@@ -1,7 +1,11 @@
 // JavaScript source code
+//cookie  用 npm install cookie-parser --save
+var cookie = require('cookie-parser');
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = new express();
+//用cookie(用express中間件完成)
+app.use(cookie());
 //配置模板引擎(View)
 app.engine('.html', require('ejs').__express)
 app.set('view engine', 'html')
@@ -16,6 +20,8 @@ app.use(bodyParser.json()); //get json
 //中間件(在接收路由前先行觸發) 用在連接前需要做的判斷或處理
 app.use(function (req, res, next) {//應用級中間件 所有路由前執行
     console.log(new Date());
+    console.log(req.cookies.key);//getCookie
+    console.log(req.cookies);
     next();
 });
 //主程式
@@ -41,7 +47,12 @@ app.get('/dynamic/:aid', function (req, res,next) {
 app.get('/dynamic/:aid', function (req, res) {
     res.send('dynamic:' + req.params.aid);
 });
-
+//set cookie
+app.get('/setCookie', function (req, res) {
+    res.cookie('key', 'value', { maxAge: 60000 });//1min
+    res.cookie('test', 'test', { maxAge: 60000 });//1min
+    res.send('cookie 設置完成')
+});
 //無匹配中間件
 app.use(function (req, res) {
     res.status(404).send('404');
