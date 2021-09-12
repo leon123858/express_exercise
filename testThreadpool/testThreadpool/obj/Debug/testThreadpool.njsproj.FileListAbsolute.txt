@@ -1,0 +1,2 @@
+C:\Users\a0970\Desktop\testThreadpool\testThreadpool\obj\Debug\testThreadpool.njsprojAssemblyReference.cache
+C:\Users\a0970\Desktop\testThreadpool\testThreadpool\obj\Debug\testThreadpool.njsproj.CoreCompileInputs.cache

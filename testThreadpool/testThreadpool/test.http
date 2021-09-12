@@ -1,0 +1,9 @@
+@hostname=127.0.0.1
+@port=1337
+@url=http://{{hostname}}:{{port}}/
+POST {{url}} HTTP/1.1
+
+content-type: application/json
+
+{
+}
